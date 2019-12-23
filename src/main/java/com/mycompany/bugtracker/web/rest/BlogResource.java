@@ -104,6 +104,18 @@ public class BlogResource {
     }
 
     /**
+     * {@code GET  /blogs/searches?term=:term} : search blog by name.
+     *
+     * @param term the term matching the blog name.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of blogs in body.
+     */
+    @GetMapping("/blogs/search")
+    public List<Blog> getBlogs(@RequestParam String term) {
+        log.debug("REST request to get Blog by name: {}", term);
+        return blogRepository.findByNameIgnoreCaseContainingOrderByNameAsc(term);
+    }
+
+    /**
      * {@code DELETE  /blogs/:id} : delete the "id" blog.
      *
      * @param id the id of the blog to delete.

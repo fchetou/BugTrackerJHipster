@@ -19,4 +19,5 @@ public interface BlogRepository extends JpaRepository<Blog, Long> {
 
     List<Blog> findAllByOrderByNameAsc();
 
+    List<Blog> findByNameIgnoreCaseContainingOrderByNameAsc(String term);
 }
