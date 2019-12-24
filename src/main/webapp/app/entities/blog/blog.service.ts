@@ -32,6 +32,11 @@ export class BlogService {
     return this.http.get<IBlog[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
+  queryMyBlogs(): Observable<EntityArrayResponseType> {
+    const options = createRequestOption();
+    return this.http.get<IBlog[]>(this.resourceUrl + '/self', { params: options, observe: 'response' });
+  }
+
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
